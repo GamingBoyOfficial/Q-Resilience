@@ -111,6 +111,3 @@ We don't claim a new algorithm. Quantum amplitude estimation for network and pow
 
 Tested with Python 3.13, Qiskit 2.6, qiskit-aer 0.18 and qiskit-algorithms 0.4.
 
-## Team
-
-YOUR TEAM NAME: YOUR NAME and TEAMMATE NAME
