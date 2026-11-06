@@ -104,3 +104,7 @@ Tested with Python 3.13, Qiskit 2.6, qiskit-aer 0.18 and qiskit-algorithms 0.4.
 ## Team
 
 **404 Qubits Found**: Parikshit, Flourish, Jason, Hashiny, Aditi
+
+## Interactive demo
+- Live app: https://q-resilience-app-mir3eotdvtgefxko6stoxw.streamlit.app
+- App code: https://github.com/aditikumar812/q-resilience-app
