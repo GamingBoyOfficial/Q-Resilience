@@ -24,14 +24,12 @@ Open the config cell (Cell 1). There are two ways to define the network:
 
 The CSV has one row per link:
 
-```
-u,v,p_fail
-s,a,0.10
-s,b,0.15
-a,b,0.05
-a,t,0.12
-b,t,0.08
-```
+    u,v,p_fail
+    s,a,0.10
+    s,b,0.15
+    a,b,0.05
+    a,t,0.12
+    b,t,0.08
 
 `p_fail` must be strictly between 0 and 1. A bad CSV (missing header, duplicate link, source and target not connected, and so on) stops with an error message that says what is wrong. A ready example is in `example_bridge_network.csv`. To use it in Colab, upload it in the left file panel and set `NETWORK_CSV = "example_bridge_network.csv"`.
 
@@ -50,12 +48,12 @@ All numbers come from a simulator. IQAE was run with target precision 0.02 and 9
 
 We ran two example networks. The first is defined by hand in the config cell. The second is loaded from `example_bridge_network.csv`.
 
-| Method | Network 1: two parallel paths (4 links, edited in the config cell) | Network 2: bridge network (5 links, loaded from CSV) |
-|---|---|---|
-| Exact enumeration | 0.0658 | 0.0255 |
-| Monte Carlo (20,000 samples) | 0.0625 | 0.0255 |
-| IQAE with the v0 oracle | 0.0654 | 0.0255 |
-| IQAE with the v1 oracle | 0.0654 | 0.0258 |
+| Method                       | Network 1: two parallel paths (4 links, edited in the config cell) | Network 2: bridge network (5 links, loaded from CSV) |
+| ---------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------- |
+| Exact enumeration            | 0.0658                                                             | 0.0255                                               |
+| Monte Carlo (20,000 samples) | 0.0625                                                             | 0.0255                                               |
+| IQAE with the v0 oracle      | 0.0654                                                             | 0.0255                                               |
+| IQAE with the v1 oracle      | 0.0654                                                             | 0.0258                                               |
 
 The Monte Carlo value for network 2 happens to land on the exact value; with 20,000 samples that is a lucky draw. Both oracles also match exact enumeration on 10 test networks (worst error about 7e-15).
 
@@ -65,25 +63,17 @@ The four figures below were produced on network 1.
 
 In state-preparation calls, IQAE's certified precision improves about 1/N (fitted slope -1.00), while Monte Carlo improves about 1/sqrt(N). This counts calls, not run time, since one quantum call is a whole circuit.
 
-![Error vs calls](figures/qresilience_error_vs_oracle.png)
-
 ### Noise
 
 With noise on every gate, the circuit breaks down quickly. With the k = 0 circuit the estimate is already about 4 times too high at a 0.1% single-qubit error rate. The k = 1 line looks accurate, but that is a coincidence of the fully mixed state, not robustness.
-
-![Noise vs depth](figures/qresilience_noise_vs_depth.png)
 
 ### Oracle cost, v0 vs. v1
 
 On a 3x3 grid, v1 needs about 190 Toffoli-equivalents against about 62,000 for v0, but 117 qubits against 13. These are compile-time counts, not hardware measurements.
 
-![v0 vs v1](figures/qresilience_v0_vs_v1.png)
-
 ### Resource growth of the v0 circuit
 
 Qubits grow roughly linearly with the number of links, while gates and depth grow very fast. A multi-controlled gate counts as one gate here, so the real cost is higher.
-
-![Resource scaling](figures/qresilience_resource_scaling.png)
 
 ## Limitations
 
@@ -102,12 +92,15 @@ We don't claim a new algorithm. Quantum amplitude estimation for network and pow
 
 ## Files
 
-| File | What it is |
-|---|---|
-| `Q-Resilience.ipynb` | The notebook with all code, results and plots |
-| `example_bridge_network.csv` | Example CSV input |
-| `figures/` | The four figures from the notebook |
-| `requirements.txt` | Packages for running it locally |
+| File                         | What it is                                    |
+| ---------------------------- | --------------------------------------------- |
+| `Q-Resilience.ipynb`         | The notebook with all code, results and plots |
+| `example_bridge_network.csv` | Example CSV input                             |
+| `figures/`                   | The four figures from the notebook            |
+| `requirements.txt`           | Packages for running it locally               |
 
 Tested with Python 3.13, Qiskit 2.6, qiskit-aer 0.18 and qiskit-algorithms 0.4.
 
+## Team
+
+**404 Qubits Found**: Parikshit, Flourish, Jason, Hashiny, Aditi
